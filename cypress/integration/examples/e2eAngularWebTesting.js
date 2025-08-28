@@ -11,9 +11,10 @@ describe('AngularWebPractice', ()=>
     {
         this.data = data
     })
-    })                                                              //Arrow functions (=>) do not have their own this context; //they inherit this from the parent scope, which can lead to unexpected behavior.
+    })                                                    
+    //Arrow functions (=>) do not have their own this context; //they inherit this from the parent scope, which can lead to unexpected behavior.
                                                                     
-    it('FrameworkPart1: Starting', function()                       //hence we have not given ()=> in the below it module ; it was not getting (this.data)
+    it('FrameworkPart1: Starting', function()                    //hence we have not given ()=> in the below it module ; it was not getting (this.data)
     {
         cy.visit(Cypress.env('url')+"/angularpractice")
         const homePage = new HomePage()                             // this object 'homepage' now has the full knowledge of the methods present in HomePage class
@@ -43,7 +44,7 @@ describe('AngularWebPractice', ()=>
             cy.log(sum)
         })
 
-        cy.get('h3 strong').then(function(element)      //here .the() is directly used bcuz no need to iterate, just need one element value
+        cy.get('h3 strong').then(function(element)      //here .then() is directly used bcuz no need to iterate, just need one element value
         {
             const amount = element.text()
             var res = amount.split(" ")         //here ".text(),.split(),.trim()" are all javascript commands 
@@ -53,7 +54,8 @@ describe('AngularWebPractice', ()=>
 
         productPage.getCheckoutButton().click()
         productPage.getCountry().type('India')
-        Cypress.config('defaultCommandTimeout',10000)        //this timeout will be applied to the current spec only; it {} just like explicit wait in selenium
+        Cypress.config('defaultCommandTimeout',10000)       
+         //this timeout will be applied to the current spec only; it {} just like explicit wait in selenium
 
         productPage.getCountryOption().click()
         cy.get('.checkbox').click({force : true})

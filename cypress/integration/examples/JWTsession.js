@@ -6,8 +6,7 @@ describe('JWT Session', ()=>
     {
         //the custome commands you created dont know how to resolve the promises,
         //hence .then()
-        cy.LoginAPI().then(function ()
-    {
+        cy.LoginAPI().then(function (){
         cy.visit('https://rahulshettyacademy.com/client/',
             {
                 onBeforeLoad : function(window)

@@ -13,7 +13,7 @@ module.exports = defineConfig({
     runMode: 1,
     },
   
-  projectId: "ymshak",    //for generating Mochawesome reports
+  // projectId: "ymshak",    //for generating Mochawesome reports - set via environment variable
 
   e2e: {
     setupNodeEvents(on, config) {   

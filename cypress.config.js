@@ -1,29 +1,40 @@
 /// <reference types="Cypress"/>
 
-const { defineConfig } = require("cypress");
+import { defineConfig } from "Cypress";
 
-module.exports = defineConfig({
-
-  defaultCommandTimeout : 6000,
-
-  //video: true,
+export default defineConfig({
+  defaultCommandTimeout: 6000,
+  video: true,
   reporter: 'cypress-mochawesome-reporter',
-
+  
   retries: {
     runMode: 1,
-    },
+    openMode: 0
+  },
   
-  // projectId: "ymshak",    //for generating Mochawesome reports - set via environment variable
+  // Uncomment and set your project ID if using Cypress Dashboard
+  // projectId: process.env.CYPRESS_PROJECT_ID,
 
   e2e: {
-    setupNodeEvents(on, config) {   
-      // implement node event listeners here
+    setupNodeEvents(on, config) {
+      // Implement node event listeners here
       require('cypress-mochawesome-reporter/plugin')(on);
-
+      
+      // Return the config object
+      return config;
     },
-    //where to find cypress related spec files: with the use of 'specPattern' property
-    specPattern: 'cypress/integration/examples/*.js',//this is available on global level
     
+    // Base URL for your application
+    baseUrl: 'https://rahulshettyacademy.com',
+    
+    // Spec file pattern - keeping your current structure
+    specPattern: 'cypress/integration/examples/*.js',
+    
+    // Viewport settings
+    viewportWidth: 1280,
+    viewportHeight: 720,
+    
+    // Additional environment variables
     env: {
       "url": "https://rahulshettyacademy.com"
     }
